@@ -20,7 +20,11 @@
       let pkgs = import nixpkgs { inherit system; };
       in rec {
         packages = {
-          webserver = pkgs.hello;
+          webserver = pkgs.python3Packages.buildPythonPackage {
+            name = "garnixapi";
+            src = ./src;
+            propagatedBuildInputs = [ pkgs.python3Packages.pytest pkgs.libsndfile ];
+          };
           default = packages.webserver;
         };
         apps.default = {
@@ -67,6 +71,6 @@
       nixosModules.default = self.nixosModules.nixcon-garnix-player-module;
 
       # Remove before starting the workshop - this is just for development
-      checks = import ./checks.nix { inherit nixpkgs self; };
+      # checks = import ./checks.nix { inherit nixpkgs self; };
     };
 }

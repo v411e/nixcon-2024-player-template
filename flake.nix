@@ -22,7 +22,7 @@
         packages = {
           webserver = pkgs.python3Packages.buildPythonPackage {
             name = "garnixapi";
-            src = ./src;
+            src = ./garnixapi;
             propagatedBuildInputs = [ pkgs.python3Packages.pytest pkgs.libsndfile ];
           };
           default = packages.webserver;

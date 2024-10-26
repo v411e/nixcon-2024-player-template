@@ -15,6 +15,6 @@ setup(
   ],
   entry_points={
     # example: file some_module.py -> function main
-    #'console_scripts': ['someprogram=some_module:main']
+    'console_scripts': ['garnixapi=garnixapi:main']
   },
 )

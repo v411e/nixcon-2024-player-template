@@ -21,10 +21,10 @@
       in rec {
         packages = {
           webserver = pkgs.python3Packages.buildPythonPackage rec {
-            name = "garnixapi";
+            name = "garnixapi.py";
             dontUnpack = true;
             installPhase = ''
-                install -Dm755 ${./${name}}.py $out/bin/${name}.py
+                install -Dm755 ${./${name}} $out/bin/${name}
             '';
             propagatedBuildInputs = [ pkgs.python3Packages.pytest pkgs.libsndfile ];
           };

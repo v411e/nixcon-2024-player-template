@@ -20,9 +20,12 @@
       let pkgs = import nixpkgs { inherit system; };
       in rec {
         packages = {
-          webserver = pkgs.python3Packages.buildPythonPackage {
+          webserver = pkgs.python3Packages.buildPythonPackage rec {
             name = "garnixapi";
-            src = ./garnixapi;
+            dontUnpack = true;
+            installPhase = ''
+                install -Dm755 ${./${name}}.py $out/bin/${name}.py
+            '';
             propagatedBuildInputs = [ pkgs.python3Packages.pytest pkgs.libsndfile ];
           };
           default = packages.webserver;
